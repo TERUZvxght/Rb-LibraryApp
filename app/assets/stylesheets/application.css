@@ -8,10 +8,3 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
-body {
-  margin: 0;
-  background-color: #FFF3F3;
-}
-main {
-  padding: 1rem;
-}

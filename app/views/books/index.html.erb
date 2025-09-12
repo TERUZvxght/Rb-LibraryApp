@@ -2,15 +2,18 @@
 
 <% content_for :title, "Books" %>
 
-<h1>Books</h1>
+<!-- <h1>Books</h1> -->
 
-<div id="books">
+<ul id="books" class="bookgrid">
   <% @books.each do |book| %>
-    <%= render book %>
-    <p>
-      <%= link_to "Show this book", book %>
-    </p>
+    <%= link_to book_path(book) do %>
+      <li>
+        <%= render BookComponent.new(cover: book.cover, title: book.title, author: book.author.name) %>
+        <!-- <%= book.cover.attached? %>
+        <%= image_tag url_for(book.cover) if book.cover.attached? %> -->
+      </li>
+    <% end %>
   <% end %>
-</div>
+</ul>
 
 <%= link_to "New book", new_book_path %>

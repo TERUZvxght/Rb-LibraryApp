@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer components {
+    .bookgrid {
+        @apply flex gap-4 overflow-scroll p-5;
+    }
+}

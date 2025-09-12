@@ -1,0 +1,7 @@
+<div class="relative flex flex-col items-center">
+    <%= image_tag (@cover.attached? ? url_for(@cover) : "books/book_no.png"), class: "h-100 w-auto block shrink-0 max-w-none transition-transform duration-300 hover:scale-105" %>
+    <div class="flex flex-col p-4 items-center">
+        <div class="text-lg font-semibold"><%= @title %></div>
+        <div class="text-sm text-gray-500"><%= @author %></div>
+    </div>
+</div>
