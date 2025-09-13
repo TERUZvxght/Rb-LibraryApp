@@ -1,9 +1,10 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /loans or /loans.json
   def index
-    @loans = Loan.all
+    @loans = Loan.all.where(user: current_user).order(due_on: :asc)
   end
 
   # GET /loans/1 or /loans/1.json
