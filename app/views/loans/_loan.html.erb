@@ -1,27 +1,34 @@
-<div id="<%= dom_id loan %>">
-  <p>
+<div class="flex items-center">
+  <!-- <p>
     <strong>User:</strong>
     <%= loan.user_id %>
+  </p> -->
+  <%= image_tag loan.book.cover.present? ? loan.book.cover : "books/book_no.png", class: "h-25 mr-5 transition-transform duration-300 group-hover:scale-115" %>
+
+  <div>
+    <p class="text-3xl">
+      <!-- <strong>Book:</strong> -->
+      <%= loan.book.title %>
+    </p>
+
+    <!-- <p>
+      <strong>Borrowed on:</strong>
+      <%= loan.borrowed_on %>
+    </p> -->
+
+    <p>
+      <strong>Due on:</strong>
+      <%= loan.due_on %>
+    </p>
+  </div>
+
+  <p class="ml-auto text-2xl mr-5 <% if loan.due_on < Date.today %>text-red-600<% end %>">
+    Days left:
+    <strong><%= (loan.due_on - Date.today).to_i %></strong>
   </p>
 
-  <p>
-    <strong>Book:</strong>
-    <%= loan.book_id %>
-  </p>
-
-  <p>
-    <strong>Borrowed on:</strong>
-    <%= loan.borrowed_on %>
-  </p>
-
-  <p>
-    <strong>Due on:</strong>
-    <%= loan.due_on %>
-  </p>
-
-  <p>
+  <!-- <p>
     <strong>Returned:</strong>
     <%= loan.returned %>
-  </p>
-
+  </p> -->
 </div>

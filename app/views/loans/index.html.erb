@@ -2,15 +2,15 @@
 
 <% content_for :title, "Loans" %>
 
-<h1>Loans</h1>
+<!-- <h1>Loans</h1> -->
 
-<div id="loans">
+<ul id="loans" class="p-5">
   <% @loans.each do |loan| %>
-    <%= render loan %>
-    <p>
-      <%= link_to "Show this loan", loan %>
-    </p>
+    <li id="<%= dom_id loan %>" class="relative group hover:bg-black/10 p-3 rounded mb-3">
+      <%= render loan %>
+      <%= link_to "", loan, class: "absolute top-0 bottom-0 left-0 right-0" %>
+    </li>
   <% end %>
-</div>
+</ul>
 
-<%= link_to "New loan", new_loan_path %>
+<!-- <%= link_to "New loan", new_loan_path %> -->

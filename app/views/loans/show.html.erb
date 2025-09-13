@@ -1,10 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<%= render ModalComponent.new(id: "confirm", title: "返却しますか?") do %>
+  <p>この操作は取り消せません。</p>
+  <div class="mt-4 flex justify-end gap-2">
+    <button class="button-gray" onclick="window.dispatchEvent(new CustomEvent('modal:close', { detail: { id: 'confirm' } }))">キャンセル</button>
+    <%= button_to "返却", @loan, method: :delete, class: "button-red" %>
+  </div>
+<% end %>
 
-<%= render @loan %>
+<div class="m-5">
+  <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= link_to "Edit this loan", edit_loan_path(@loan) %> |
-  <%= link_to "Back to loans", loans_path %>
+    <%= render @loan %>
 
-  <%= button_to "Destroy this loan", @loan, method: :delete %>
+  <div class="mt-2.5 ml-auto w-fit pr-4 flex gap-2">
+    <!-- <%= link_to "Edit this loan", edit_loan_path(@loan) %> |
+    <%= link_to "Back to loans", loans_path %> -->
+
+    <!-- <%= button_to "Destroy this loan", @loan, method: :delete %> -->
+    <%= link_to "Back", loans_path, class: "button-gray" %>
+    <button class="button-blue" onclick="window.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'confirm' } }))">Return</button>
+  </div>
 </div>
