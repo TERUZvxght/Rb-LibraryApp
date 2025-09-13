@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full w-full">
 
 <head>
     <title><%= [yield(:title).presence, "RB-Library"].compact.join(" - ") %></title>
@@ -23,9 +23,9 @@
     <%= javascript_importmap_tags %>
 </head>
 
-<body class="m-0 bg-[#FFF3F3]">
+<body class="m-0 bg-[#FFF3F3] h-full w-full flex flex-col">
     <%= render "shared/header" %>
-    <main class="relative">
+    <main class="relative h-auto w-full block flex-1">
         <%= yield %>
     </main>
 </body>

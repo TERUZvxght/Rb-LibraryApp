@@ -1,0 +1,26 @@
+
+<% provide(:title, "Sign up") %>
+
+<div class="absolute top-0 left-0 w-1/2 h-full bg-[#FFF3F3]/95 p-12">
+  <div class="bg-white h-full p-15 rounded-4xl flex flex-col gap-3">
+    <h1 class="text-4xl font-medium">Sign up</h1>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <%= render FloatingFieldComponent.new(form: f, attribute: :email, autocomplete: "email", type: :email, autofocus: true) %>
+      <%= render FloatingFieldComponent.new(form: f, attribute: :password, autocomplete: "new-password", type: :password) %>
+      <%= render FloatingFieldComponent.new(form: f, attribute: :password_confirmation, autocomplete: "new-password", type: :password) %>
+
+      <div class="actions mt-10 bg-blue-500 text-white rounded-md p-2 text-center hover:bg-blue-600 transition-colors relative">
+        <%= f.submit "Sign up", id: "submit" %>
+        <label for="submit" class="absolute top-0 bottom-0 left-0 right-0 cursor-pointer"></label>
+      </div>
+    <% end %>
+
+    <p class="text-center">or</p>
+    <%= render "users/shared/links" %>
+  </div>
+</div>
+
+<%= image_tag "login/login-bg.png", class: "absolute top-0 left-0 w-full h-full object-cover -z-10" %>

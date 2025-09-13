@@ -28,5 +28,6 @@
         <div class="opacity-0 w-8 h-8"></div>
         <input data-action="blur->searchbox#checkClose keydown.esc->searchbox#close" data-searchbox-target="input" type="text" placeholder="Search..." class="focus:outline-0 scale-x-0 transition-transform" />
     </div>
-    <!-- Account -->
+    <!-- Account Here -->
+    <%= button_to "logout", destroy_user_session_path, method: :delete %>
 </header>
