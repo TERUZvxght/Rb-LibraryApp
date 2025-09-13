@@ -14,4 +14,13 @@
     .floating-field label {
         @apply absolute left-0 top-2 text-gray-500 text-base transition-all;
     }
+    .button-blue {
+        @apply text-sm bg-blue-500 text-white rounded-md px-3 py-2 hover:bg-blue-600 transition-colors cursor-pointer;
+    }
+    .button-gray {
+        @apply text-sm bg-gray-500 text-white rounded-md px-3 py-2 hover:bg-gray-600 transition-colors cursor-pointer;
+    }
+    .button-red {
+        @apply text-sm bg-red-500 text-white rounded-md px-3 py-2 hover:bg-red-600 transition-colors cursor-pointer;
+    }
 }
