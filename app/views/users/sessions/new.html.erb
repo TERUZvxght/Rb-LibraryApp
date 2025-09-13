@@ -6,16 +6,8 @@
 
     <%= form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= render FloatingFieldComponent.new(form: f, attribute: :email, autocomplete: "email", type: :email, autofocus: true) %>
-      <!-- <div class="floating-field">
-        <%= f.label :email %>
-        <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "peer", placeholder: " ", type: :email %>
-      </div> -->
 
       <%= render FloatingFieldComponent.new(form: f, attribute: :password, autocomplete: "current-password", type: :password) %>
-      <!-- <div class="floating-field">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div> -->
 
       <% if devise_mapping.rememberable? %>
         <div class="field">

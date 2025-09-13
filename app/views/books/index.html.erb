@@ -9,8 +9,6 @@
     <%= link_to book_path(book) do %>
       <li>
         <%= render BookComponent.new(cover: book.cover, title: book.title, author: book.author.name) %>
-        <!-- <%= book.cover.attached? %>
-        <%= image_tag url_for(book.cover) if book.cover.attached? %> -->
       </li>
     <% end %>
   <% end %>
