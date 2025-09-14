@@ -14,7 +14,7 @@ export default class extends Controller {
     this.inputTarget.classList.add("scale-x-100", "delay-100");
     this.hitboxTarget.classList.remove("hover:opacity-100");
     this.backgroundTarget.classList.add("bg-white", "opacity-100");
-    this.iconTarget.classList.remove("translate-x-42.5");
+    this.iconTarget.classList.remove("translate-x-43.5");
     this.iconTarget.classList.add("translate-x-0");
     this.inputTarget.focus();
   }
@@ -27,7 +27,7 @@ export default class extends Controller {
     this.inputTarget.classList.add("scale-x-0");
     this.hitboxTarget.classList.add("hover:opacity-100");
     this.backgroundTarget.classList.remove("bg-white", "opacity-100");
-    this.iconTarget.classList.add("translate-x-42.5");
+    this.iconTarget.classList.add("translate-x-43.5");
     this.iconTarget.classList.remove("translate-x-0");
     this.inputTarget.value = "";
     this.inputTarget.blur();
