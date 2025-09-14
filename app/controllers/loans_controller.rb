@@ -2,6 +2,7 @@ class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :require_admin, only: %i[ new edit ]
+  before_action :is_self_or_admin, only: %i[ show destroy ]
 
   # GET /loans or /loans.json
   def index
@@ -68,5 +69,11 @@ class LoansController < ApplicationController
     # Only allow a list of trusted parameters through.
     def loan_params
       params.expect(loan: [ :user_id, :book_id, :borrowed_on, :due_on, :returned ])
+    end
+
+    def is_self_or_admin
+      unless @loan.user == current_user || current_user.admin?
+        redirect_to loans_path, alert: "他のユーザーの貸出情報は閲覧できません。"
+      end
     end
 end
