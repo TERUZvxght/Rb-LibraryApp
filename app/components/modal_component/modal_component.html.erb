@@ -1,8 +1,9 @@
-<a type="button" data-controller="modal" data-modal-id-value="<%= @id %>" data-modal-target="backdrop" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 flex justify-center items-center" onclick="window.dispatchEvent(new CustomEvent('modal:close', { detail: { id: '<%= @id %>' } }))" aria-hidden="true">
-    <div data-modal-target="panel" class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+<div data-controller="modal" data-modal-id-value="<%= @id %>" data-modal-target="backdrop" class="absolute inset-0 z-50 hidden flex justify-center items-center" aria-hidden="true">
+    <a type="button" data-controller="modal" data-modal-id-value="<%= @id %>" data-modal-target="background" class="absolute inset-0 bg-black/50" onclick="window.dispatchEvent(new CustomEvent('modal:close', { detail: { id: '<%= @id %>' } }))"></a>
+    <div data-modal-target="panel" class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 z-51">
         <h2 class="text-lg font-bold"><%= @title %></h2>
         <div class="mt-4">
             <%= content %>
         </div>
     </div>
-</a>
+</div>
