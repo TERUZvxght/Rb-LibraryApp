@@ -3,7 +3,21 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @q          = params[:q]
+    @from_on    = params[:from_on]
+    @to_on      = params[:to_on]
+    @min_amount = params[:min_amount]
+    @max_amount = params[:max_amount]
+    @sort       = params[:sort]
+    @page       = (params[:page] || 1).to_i
+
+    @result = BooksSearch.new(
+      q: @q, from_on: @from_on, to_on: @to_on,
+      min_amount: @min_amount, max_amount: @max_amount,
+      sort: @sort, page: @page
+    ).call
+
+    @books = @result.records
   end
 
   # GET /books/1 or /books/1.json

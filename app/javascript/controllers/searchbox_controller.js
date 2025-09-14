@@ -9,10 +9,13 @@ export default class extends Controller {
     // this._onKeydown = this._onKeydown.bind(this)
   }
 
+  focus() { this.inputTarget.focus(); }
+
   open() {
     this.inputTarget.classList.remove("scale-x-0");
     this.inputTarget.classList.add("scale-x-100", "delay-100");
     this.hitboxTarget.classList.remove("hover:opacity-100");
+    this.hitboxTarget.classList.add("select-none");
     this.backgroundTarget.classList.add("bg-white", "opacity-100");
     this.iconTarget.classList.remove("translate-x-43.5");
     this.iconTarget.classList.add("translate-x-0");
@@ -25,6 +28,7 @@ export default class extends Controller {
   close() {
     this.inputTarget.classList.remove("scale-x-100", "delay-100");
     this.inputTarget.classList.add("scale-x-0");
+    this.hitboxTarget.classList.remove("select-none");
     this.hitboxTarget.classList.add("hover:opacity-100");
     this.backgroundTarget.classList.remove("bg-white", "opacity-100");
     this.iconTarget.classList.add("translate-x-43.5");
@@ -41,9 +45,9 @@ export default class extends Controller {
   //   document.removeEventListener("keydown", this._onKeydown)
   // }
 
-  _onDocClick(e) {
-    if (!this.element.contains(e.target) && !this.inputTarget.value) this.close()
-  }
+  // _onDocClick(e) {
+  //   if (!this.element.contains(e.target) && !this.inputTarget.value) this.close()
+  // }
 
   // _onKeydown(e) {
   //   alert(e.key)
