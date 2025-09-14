@@ -17,7 +17,13 @@ class BooksController < ApplicationController
       sort: @sort, page: @page
     ).call
 
+    sub = Loan.all.select("book_id, COUNT(*) AS cnt").group(:book_id)
+
     @books = @result.records
+      .joins("LEFT JOIN (#{sub.to_sql}) AS x ON x.book_id = books.id")
+      .where("books.amount > COALESCE(x.cnt, 0)")
+
+    # @books = @result.records
   end
 
   # GET /books/1 or /books/1.json
