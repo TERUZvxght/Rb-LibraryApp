@@ -36,6 +36,11 @@
   </div>
 
   <div>
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
