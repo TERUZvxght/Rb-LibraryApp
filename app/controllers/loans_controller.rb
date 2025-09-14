@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :require_admin, only: %i[ new edit ]
 
   # GET /loans or /loans.json
   def index
