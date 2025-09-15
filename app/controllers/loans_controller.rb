@@ -47,6 +47,7 @@ class LoansController < ApplicationController
     @loan.borrowed_on = Date.today
     @loan.due_on = Date.today + RENT_PERMITION
     @loan.returned = false
+    @current_count = @loan.book.amount - Loan.where(book: @loan.book, returned: false).count
 
     respond_to do |format|
       if @loan.save

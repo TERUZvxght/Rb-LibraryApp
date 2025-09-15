@@ -2,7 +2,7 @@
   <form method="post" action="<%= rent_loan_path %>" class="flex flex-col gap-4">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <%= hidden_field_tag :book_id, @book.id %>
-    <p>Are you sure you want to rent "<%= @book.title %>"?</p>
+    <p>Are you sure you want to rent "<strong><%= @book.title %></strong>"?</p>
     <div class="flex justify-end gap-2">
       <button type="button" class="button-gray" onclick="window.dispatchEvent(new CustomEvent('modal:close', { detail: { id: 'rent' } }))">Cancel</button>
       <button type="submit" class="button-blue">Rent</button>
@@ -16,16 +16,20 @@
   <%= render @book %>
 
   <div class="flex flex-col">
-    <% if user_signed_in? %>
-      <button class="button-blue ml-auto" onclick="window.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'rent' } }))">Rent</button>
-    <% else %>
-      <p class="ml-auto text-red-500">Please log in to rent this book.</p>
-    <% end %>
-    <!-- <%= button_to "Rent", rent_loan_path(book_id: @book.id), method: :post, class: "button-blue ml-auto" %> -->
-    <!-- <button class="button-blue ml-auto">Rent</button> -->
+    <div class="flex gap-2 ml-auto">
+      <%= button_to "Back", books_path, method: :get, class: "button-gray" %>
+      <% if user_signed_in? %>
+        <% if @current_count <= 0 %>
+          <p class="text-red-500">This book is currently unavailable for rent.</p>
+        <% else %>
+          <button class="button-blue" onclick="window.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'rent' } }))">Rent</button>
+        <% end %>
+      <% else %>
+        <p class="text-red-500">Please log in to rent this book.</p>
+      <% end %>
+    </div>
     <p>
-      <%= link_to "Edit this book", edit_book_path(@book) %> |
-      <%= link_to "Back to books", books_path %>
+      <%= link_to "Edit this book", edit_book_path(@book) %>
     </p>
 
     <%= button_to "Destroy this book", @book, method: :delete %>

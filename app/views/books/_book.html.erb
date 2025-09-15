@@ -1,17 +1,24 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Title:</strong>
-    <%= book.title %>
-  </p>
+<div id="<%= dom_id book %>" class="flex">
+  <%= image_tag book.cover, class: "h-120 mb-4" if book.cover.present? %>
+  <div class="flex flex-col ml-4">
+    <p class="text-5xl font-bold mb-2">
+      <!-- <strong>Title:</strong> -->
+      <%= book.title %>
+    </p>
 
-  <p>
-    <strong>Published on:</strong>
-    <%= book.published_on %>
-  </p>
+    <p class="text-2xl mb-2 font-bold">
+      <!-- <strong>Author:</strong> -->
+      <%= book.author.name %>
+    </p>
 
-  <p>
-    <strong>Author:</strong>
-    <%= book.author.name %>
-  </p>
+    <p class="mt-5">
+      <strong>Published on:</strong>
+      <%= book.published_on %>
+    </p>
 
+    <p class="mt-2">
+      <strong>Amount:</strong>
+      <%= @current_count %>
+    </p>
+  </div>
 </div>
