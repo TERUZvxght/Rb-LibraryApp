@@ -50,6 +50,11 @@ class LoansController < ApplicationController
     @current_count = @loan.book.amount - Loan.where(book: @loan.book, returned: false).count
 
     respond_to do |format|
+      if @loan.book.amount - Loan.where(book: @loan.book, returned: false).count <= 0
+        format.html { redirect_to @loan.book, alert: "貸出可能な冊数がありません。" }
+        format.json { render :show, json: { error: "貸出可能な冊数がありません。" }, status: :unprocessable_entity }
+        return
+      end
       if @loan.save
         format.html { redirect_to @loan, notice: "Loan was successfully created." }
         format.json { render :show, status: :created, location: @loan }
