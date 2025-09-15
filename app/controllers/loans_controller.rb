@@ -54,6 +54,10 @@ class LoansController < ApplicationController
         format.html { redirect_to @loan.book, alert: "貸出可能な冊数がありません。" }
         format.json { render :show, json: { error: "貸出可能な冊数がありません。" }, status: :unprocessable_entity }
         return
+      elsif Loan.exists?(book: @loan.book, user: current_user, returned: false)
+        format.html { redirect_to @loan.book, alert: "すでに借りている本です。" }
+        format.json { render :show, json: { error: "すでに借りている本です。" }, status: :unprocessable_entity }
+        return
       end
       if @loan.save
         format.html { redirect_to @loan, notice: "Loan was successfully created." }

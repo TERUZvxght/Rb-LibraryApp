@@ -21,6 +21,8 @@
       <% if user_signed_in? %>
         <% if @current_count <= 0 %>
           <p class="text-red-500">This book is currently unavailable for rent.</p>
+        <% elsif @is_already_rented %>
+          <p class="text-red-500">You have already rented this book.</p>
         <% else %>
           <button class="button-blue" onclick="window.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'rent' } }))">Rent</button>
         <% end %>

@@ -30,6 +30,7 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @current_count = @book.amount - Loan.where(book: @book, returned: false).count
+    @is_already_rented = Loan.exists?(book: @book, user: current_user, returned: false) if current_user
   end
 
   # GET /books/new
