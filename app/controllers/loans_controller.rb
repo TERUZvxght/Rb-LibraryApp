@@ -1,3 +1,5 @@
+RENT_PERMITION = 14.days
+
 class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
@@ -25,6 +27,26 @@ class LoansController < ApplicationController
   # POST /loans or /loans.json
   def create
     @loan = Loan.new(loan_params)
+
+    respond_to do |format|
+      if @loan.save
+        format.html { redirect_to @loan, notice: "Loan was successfully created." }
+        format.json { render :show, status: :created, location: @loan }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @loan.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /loans/rent
+  def rent
+    @loan = Loan.new
+    @loan.user = current_user
+    @loan.book_id = params[:book_id]
+    @loan.borrowed_on = Date.today
+    @loan.due_on = Date.today + RENT_PERMITION
+    @loan.returned = false
 
     respond_to do |format|
       if @loan.save

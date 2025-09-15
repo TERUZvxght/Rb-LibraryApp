@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  post "rent", to: "loans#rent", as: "rent_loan"
   resources :loans
   resources :books
   resources :authors
