@@ -28,10 +28,11 @@
         <p class="text-red-500">Please log in to rent this book.</p>
       <% end %>
     </div>
-    <p>
-      <%= link_to "Edit this book", edit_book_path(@book) %>
-    </p>
-
-    <%= button_to "Destroy this book", @book, method: :delete %>
+    <% if is_admin? %>
+      <p>
+        <%= link_to "Edit this book", edit_book_path(@book) %>
+        <%= button_to "Destroy this book", @book, method: :delete %>
+      </p>
+    <% end %>
   </div>
 </div>
