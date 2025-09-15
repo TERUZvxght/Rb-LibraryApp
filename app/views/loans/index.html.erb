@@ -13,4 +13,6 @@
   <% end %>
 </ul>
 
-<!-- <%= link_to "New loan", new_loan_path %> -->
+<% if is_admin? %>
+  <%= link_to "New loan", new_loan_path %>
+<% end %>
