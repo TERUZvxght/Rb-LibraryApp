@@ -86,6 +86,6 @@ class BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.expect(book: [ :title, :published_on, :author_id, :cover ])
+      params.expect(book: [ :title, :published_on, :author_id, :cover, :amount ])
     end
 end
